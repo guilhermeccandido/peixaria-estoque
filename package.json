@@ -44,13 +44,21 @@
     "electron-builder": "^24.5.0"
   },
   "build": {
-    "appId": "com.peixariaestoque.app",
+    "appId": "com.peixaria.estoque",
+    "productName": "Peixaria Estoque",
     "win": {
-      "target": "nsis",
-      "icon": "src/assets/icon.ico"
+      "icon": "src/assets/icone.ico"
     },
-    "directories": {
-      "output": "dist"
-    }
+    "mac": {
+      "icon": "src/assets/icone.icns"
+    },
+    "linux": {
+      "icon": "src/assets/icone.png"
+    },
+    "files": [
+      "build/**/*",
+      "src/**/*",
+      "package.json"
+    ]
   }
 }
