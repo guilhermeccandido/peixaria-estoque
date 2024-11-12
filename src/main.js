@@ -6,14 +6,12 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            // Carregar diretamente o index.html da pasta 'build'
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
         },
     });
 
-    // Defina o caminho para o arquivo index.html gerado após build
-    win.loadFile(path.join(__dirname, 'build', 'index.html')); // Carregar o arquivo compilado do React
+    win.loadFile(path.join(__dirname, 'build', 'index.html'));
 }
 
 app.whenReady().then(createWindow);

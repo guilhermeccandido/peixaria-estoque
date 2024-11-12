@@ -7,23 +7,19 @@ function App() {
   const [estoque, setEstoque] = useState([]);
   const [removerPeso, setRemoverPeso] = useState("");
 
-  // Função para formatar o valor do peso para permitir vírgula
   const handlePesoChange = (e) => {
     const value = e.target.value;
-    // Substitui a vírgula por ponto para o React lidar com a conversão de número corretamente
     const formattedValue = value.replace(",", ".");
     setPeso(formattedValue);
   };
 
-  // Função para adicionar ou atualizar o peso do item no estoque
   const adicionarItem = () => {
-    if (!item || !peso) return; // Não adiciona se o nome ou peso estiverem vazios
+    if (!item || !peso) return; 
 
     const pesoFloat = parseFloat(peso);
     const itemExistente = estoque.find((i) => i.nome.toLowerCase() === item.toLowerCase());
 
     if (itemExistente) {
-      // Se o item já existe, soma o peso
       const novoEstoque = estoque.map((i) =>
         i.nome.toLowerCase() === item.toLowerCase()
           ? { ...i, peso: i.peso + pesoFloat }
@@ -31,13 +27,12 @@ function App() {
       );
       setEstoque(novoEstoque);
     } else {
-      // Caso contrário, adiciona um novo item
       const novoItem = { nome: item, peso: pesoFloat };
       setEstoque([...estoque, novoItem]);
     }
 
-    setItem(""); // Limpa o campo de nome
-    setPeso(""); // Limpa o campo de peso
+    setItem("");
+    setPeso("");
   };
 
   // Função para remover uma quantidade específica do item
@@ -49,7 +44,6 @@ function App() {
     if (pesoRemover > 0 && pesoRemover <= item.peso) {
       item.peso -= pesoRemover;
       if (item.peso === 0) {
-        // Se o peso for zero, remove o item completamente
         novoEstoque.splice(index, 1);
       } else {
         novoEstoque[index] = item;
